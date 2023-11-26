@@ -1,0 +1,49 @@
+<app-container [classes]="'container flex sticky'">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxShow="true" fxHide.lt-md="true">
+      <a mat-button [routerLink]="[ '/' ]">Home Page</a>
+      <button mat-button *ngFor="let item of categories" [routerLink]="[ item.url ]" routerLinkActive="active">
+        {{item.title}}&nbsp;
+        <mat-icon>{{item.icon}}</mat-icon>
+      </button>
+      <span class="flex_span"></span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>arrow_drop_down</mat-icon>
+        <span class="lowerCase" *ngIf="currentUser">
+          Logged in as {{currentUser}}
+        </span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+
+    </mat-toolbar-row>
+
+    <mat-toolbar-row fxShow="true" fxHide.gt-md="true">
+      <button class="small-margin-left" mat-button [matMenuTriggerFor]="responsive">
+        <mat-icon>list</mat-icon>
+        <span class="lowerCase" *ngIf="currentUser">
+          {{currentUser}}
+        </span>
+      </button>
+      <mat-menu #responsive="matMenu">
+        <button mat-menu-item [routerLink]="[ '/home/splash' ]" routerLinkActive="responsiveActive">
+          <mat-icon>home</mat-icon>
+          <span>Home Page</span>
+        </button>
+        <button mat-menu-item *ngFor="let item of categories" [routerLink]="[ item.url ]"
+          routerLinkActive="responsiveActive">
+          <mat-icon>{{item.icon}}</mat-icon>
+          <span>{{item.title | titlecase}}</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</app-container>

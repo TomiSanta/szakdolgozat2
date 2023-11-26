@@ -1,0 +1,50 @@
+<form [formGroup]="form">
+  <h3>Finish order</h3>
+  <section class="checkbox-selection" (click)="fillInputs()">
+    <mat-checkbox class="checkbox">Copy my registration data!</mat-checkbox>
+  </section>
+  <mat-form-field class="max-width">
+    <mat-label>Full name</mat-label>
+    <input matInput type="text" name="fullName" placeholder="Pl.: Nagy Béla" required formControlName="fullName">
+  </mat-form-field>
+  <mat-form-field class="max-width">
+    <mat-label>E-mail address</mat-label>
+    <input required type="email" name="email" matInput placeholder="Pl.: pelda@email.com" formControlName="email">
+  </mat-form-field>
+  <mat-form-field class="max-width">
+    <mat-label>Phone number</mat-label>
+    <input required type="tel" name="phoneNumber" matInput formControlName="phoneNumber">
+  </mat-form-field>
+  <mat-form-field class="max-width">
+    <mat-label>Address</mat-label>
+    <textarea required placeholder="Pl.: Magyarország, Szeged, Kárász utca 5." name="address" formControlName="address"
+      matInput cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="2"></textarea>
+  </mat-form-field>
+  <mat-form-field class="max-width">
+    <mat-label>Description</mat-label>
+    <textarea placeholder="Pl.: Watch out, my dog is big any biting!" name="description" formControlName="description"
+      matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field class="max-width" appearance="fill">
+    <mat-label>Payment method</mat-label>
+    <mat-select [(value)]="delivery" required>
+      <mat-option *ngFor="let payment of payment_methods" [value]="payment" (click)="selectDelivery()">{{payment}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-label class="max-width">Price of products: {{fullPrice}}</mat-label>
+  <input type="hidden" name="fullPrice" [ngModel]="fullPrice" formControlName="fullPrice">
+  <br>
+  <mat-label class="max-width">Delivery fee: {{deliveryFee}}</mat-label>
+  <input type="hidden" name="delivery" [ngModel]="deliveryFee" formControlName="delivery">
+  <br>
+  <mat-label class="max-width">Total: {{total}}</mat-label>
+  <input type="hidden" name="total" [ngModel]="total" formControlName="total">
+  <br>
+  <div class="flex-end">
+    <button mat-button (click)="dialogRef.close()" class="margin-right">CANCEL</button>
+    <button mat-button [mat-dialog-close]="form.value" [disabled]="form.invalid" color="primary">PLACE ORDER
+      <mat-icon>done_outline</mat-icon>
+    </button>
+  </div>
+</form>

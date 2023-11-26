@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  background: #15202B;
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.max-width {
+  width: 100%;
+}
+
+.mat-toolbar.mat-primary,
+.mat-raised-button.mat-primary {
+  background-color: #003366;
+}
+
+@media (max-width: 440px) {
+  .card-image {
+    width: calc(100vw - 40px);
+    height: auto;
+  }
+}
+
+.list {
+  flex: 1 1;
+  max-width: calc(400px + (2*16px));
+  margin: 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.center-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

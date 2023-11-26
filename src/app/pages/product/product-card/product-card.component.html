@@ -1,0 +1,21 @@
+<mat-card *ngIf="product" (click)="openRating()">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product.brand}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <img class="card-image" [src]="product.image" [alt]="product.name">
+    <p>{{product.description}}</p>
+    <p class="price">{{product.price}}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="updateCart($event)">
+      <mat-icon *ngIf="inCart;else notInCart">remove_shopping_cart</mat-icon>
+      <ng-template #notInCart>
+        <mat-icon>add_shopping_cart</mat-icon>
+      </ng-template>
+    </button>
+  </mat-card-actions>
+</mat-card>

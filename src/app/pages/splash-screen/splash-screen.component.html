@@ -1,0 +1,9 @@
+<app-container>
+  <h1>Product Ordering App - A5ZCLU!</h1>
+
+  <div class="splash-category">
+    <mat-card matRipple appOnHover *ngFor="let item of categories" [matRippleColor]="item.color"
+      [routerLink]="[ item.url ]">
+      {{item.title}}</mat-card>
+  </div>
+</app-container>

@@ -1,0 +1,26 @@
+<mat-card *ngIf="product">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product.brand}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <img class="card-image" [src]="product.image" [alt]="product.name">
+    <p>{{product.description}}</p>
+    <p class="price">{{actualPrice}}</p>
+    <p>Amount: <span class="amount">{{amount}}</span>
+      <button mat-button (click)="addAmount()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-button (click)="removeAmount()">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="removeFromCart()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

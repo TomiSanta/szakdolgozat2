@@ -1,0 +1,1 @@
+Ha a telekom-nál karbantartás folyik, akkor a képek nem elérhetők :(

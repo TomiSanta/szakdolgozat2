@@ -1,0 +1,33 @@
+<div class="center-form">
+  <span *ngIf="isLoading" class="center-spinner">
+    <mat-spinner></mat-spinner>
+  </span>
+  <ng-container *ngIf="!isLoading">
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <h3>Login</h3>
+        <mat-form-field class="max-width">
+          <mat-label>E-mail address</mat-label>
+          <input type="email" name="email" matInput required placeholder="Pl. pelda@email.cim" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="max-width">
+          <mat-label>Password</mat-label>
+          <input type="password" name="password" matInput required formControlName="password">
+        </mat-form-field>
+        <mat-chip-list *ngIf="isError">
+          <mat-chip color="warn" class="max-width small-margin-top" selected>
+            Invalid username or password!
+          </mat-chip>
+        </mat-chip-list>
+        <br>
+        <div>
+          <button mat-button color="accent" [routerLink]="[ '/registration' ]">Go to Registration</button>
+        </div>
+        <br>
+        <button mat-raised-button color="primary" class="max-width" (click)="login()">
+          LOGIN
+        </button>
+      </form>
+    </mat-card>
+  </ng-container>
+</div>

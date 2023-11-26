@@ -1,0 +1,17 @@
+<app-container [classes]="'container flex'">
+  <span *ngIf="isLoading" class="center-spinner">
+    <mat-spinner></mat-spinner>
+  </span>
+
+  <ng-container *ngIf="!isLoading">
+    <app-cart appOnHover class="list" *ngFor="let item of inCartProducts" [product]="item"
+      (callUpdateCart)=updateCart($event)></app-cart>
+    <button color="primary" *ngIf="inCartProducts !== undefined && inCartProducts.length!==0; else emptyCart"
+      class="continue-button" mat-raised-button (click)="openDialog()">Continue
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+    <ng-template #emptyCart>
+      <p class="empty-cart">Put something in your cart!</p>
+    </ng-template>
+  </ng-container>
+</app-container>

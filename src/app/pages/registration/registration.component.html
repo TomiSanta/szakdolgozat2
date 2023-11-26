@@ -1,0 +1,65 @@
+  <div class="center-form">
+    <span *ngIf="isLoading" class="center-spinner">
+      <mat-spinner></mat-spinner>
+    </span>
+
+    <ng-container *ngIf="!isLoading">
+      <mat-card>
+        <form [formGroup]="form" (ngSubmit)="registration()">
+          <h3>Registration</h3>
+          <mat-form-field class="max-width">
+            <mat-label>Full name</mat-label>
+            <input matInput type="text" name="fullName" placeholder="Pl.: Nagy Béla" required
+              formControlName="fullName">
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>E-mail address</mat-label>
+            <input type="email" name="email" matInput placeholder="Pl.: pelda@email.com" required
+              formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Nickname</mat-label>
+            <input type="text" name="nickname" matInput placeholder="Pl.: Bélus" formControlName="nickname">
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Password</mat-label>
+            <input required type="password" name="password" matInput placeholder="Jelszó" formControlName="password">
+            <mat-hint class="red-color" *ngIf="form.value.password.length < 6" align="end">6 / {{form.value.password.length}}</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Password again</mat-label>
+            <input required type="password" name="re_password" matInput placeholder="Jelszó újra"
+              formControlName="re_password">
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Phone number</mat-label>
+            <input type="tel" name="phoneNumber" matInput formControlName="phoneNumber">
+          </mat-form-field>
+          <mat-form-field class="max-width" appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select required name="country" formControlName="country">
+              <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+              <mat-option [value]="'Other'">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Address</mat-label>
+            <textarea required placeholder="Pl.: Szeged, Kárász utca 5." name="address" formControlName="address"
+              matInput cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="2"></textarea>
+          </mat-form-field>
+          <mat-chip-list *ngIf="error">
+            <mat-chip color="warn" class="max-width small-margin-top" selected>
+              Something has failed!
+            </mat-chip>
+          </mat-chip-list>
+          <br>
+          <div>
+            <button mat-button color="accent" [routerLink]="[ '/login' ]">Go to Login</button>
+          </div>
+          <br>
+          <button type="submit" mat-raised-button color="primary" class="max-width"
+            [disabled]="form.invalid">REGISTRATION</button>
+        </form>
+      </mat-card>
+    </ng-container>
+  </div>
